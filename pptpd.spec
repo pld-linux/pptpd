@@ -65,7 +65,7 @@ if [ -f /var/lock/subsys/pptpd ]; then
 else
         echo "Type \"/etc/rc.d/init.d/pptpd start\" to start pptpd." 1>&2
 fi
-                                                                                
+
 %preun
 if [ "$1" = "0" ]; then
         if [ -f /var/lock/subsys/pptpd ]; then
