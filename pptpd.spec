@@ -25,21 +25,18 @@ similar to other C/S protocols.
 %setup -q
 
 %build
-LDFLAGS="-s"; export LDFLAGS
 %configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 install samples/pptpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/pptpd.conf
 
-gzip -9nf AUTHORS README TODO html/* samples/* \
-	$RPM_BUILD_ROOT%{_mandir}/*/*
+gzip -9nf AUTHORS README TODO html/* samples/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
