@@ -38,7 +38,7 @@ a klientem podobnie do innych protoko³ów klient-serwer.
 
 %build
 aclocal
-autoconf
+%{__autoconf}
 %configure
 %{__make}
 
