@@ -2,7 +2,7 @@ Summary:	Serves out PPTP connections
 Summary(pl):	Serwer po³±czeñ PPTP
 Name:		pptpd
 Version:	1.1.4
-%define	bver	b3
+%define	bver	b4
 Release:	1.%{bver}.1
 License:	GPL
 Group:		Applications/System
