@@ -86,4 +86,3 @@ fi
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
 %{_libdir}/%{name}
-%{_libdir}/%{name}/*
