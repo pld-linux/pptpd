@@ -41,7 +41,7 @@ a klientem podobnie do innych protoko³ów klient-serwer.
 %prep
 %setup -q 
 %patch0 -p1
-%ifarch amd64 ia64 ppc64 sparc64
+%if "%{_lib}" == "lib64"
 %patch1 -p1
 %endif
 
