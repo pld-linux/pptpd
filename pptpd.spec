@@ -1,12 +1,12 @@
 Summary:	Serves out PPTP connections
 Summary(pl):	Serwer po³±czeñ PPTP
 Name:		pptpd
-Version:	1.1.3
+Version:	1.1.4
 Release:	1
 License:	GPL
 Group:		Applications/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
-Source0:	http://poptop.lineo.com/releases/%{name}-%{version}.tar.gz
+Source0:	http://poptop.lineo.com/releases/%{name}-%{version}-b3.tar.gz
 URL:		http://poptop.lineo.com/
 BuildRequires:	automake
 BuildRequires:	autoconf
@@ -34,7 +34,7 @@ pptp, a pakiety z podsieci s± wy³apywane i puszczne pomiêdzy serwerem
 a klientem podobnie do innych protoko³ów klient-serwer.
 
 %prep
-%setup -q
+%setup -q -n poptop-%{version}
 
 %build
 %{__aclocal}
