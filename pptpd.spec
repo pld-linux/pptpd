@@ -7,7 +7,7 @@ Release:	1.%{bver}.1
 License:	GPL
 Group:		Applications/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
-Source0:	http://prdownloads.sourceforge.net/poptop/%{name}-%{version}-%{bver}.tar.gz
+Source0:	http://dl.sourceforge.net/poptop/%{name}-%{version}-%{bver}.tar.gz
 # Source0-md5:	58603224998f22542e8d7ecb357bc006
 URL:		http://www.poptop.org/
 BuildRequires:	autoconf
