@@ -61,17 +61,17 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/chkconfig --add pptpd
 if [ -f /var/lock/subsys/pptpd ]; then
-        /etc/rc.d/init.d/pptpd restart 1>&2
+	/etc/rc.d/init.d/pptpd restart 1>&2
 else
-        echo "Type \"/etc/rc.d/init.d/pptpd start\" to start pptpd." 1>&2
+	echo "Type \"/etc/rc.d/init.d/pptpd start\" to start pptpd." 1>&2
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-        if [ -f /var/lock/subsys/pptpd ]; then
-                /etc/rc.d/init.d/pptpd stop 1>&2
-        fi
-        /sbin/chkconfig --del pptpd
+	if [ -f /var/lock/subsys/pptpd ]; then
+		/etc/rc.d/init.d/pptpd stop 1>&2
+	fi
+	/sbin/chkconfig --del pptpd
 fi
 
 
