@@ -13,6 +13,8 @@ Source1:	%{name}.init
 URL:		http://www.poptop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
