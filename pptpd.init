@@ -4,6 +4,13 @@
 #
 # chkconfig:	345 56 46
 #
+# description:	PPTPd, Point-to-Point Tunnelling Protocol Daemon, offers out
+#		connections to pptp clients to become virtual members of the IP pool
+#		owned by the pptp server. In effect, these clients become virtual
+#		members of the local subnet, regardless of what their real IP address
+#		is. A tunnel is built between the pptp server and client, and packets
+#		from the subnet are wrapped and passed between server and client
+#		similar to other C/S protocols.
 #
 # $Id$
 
