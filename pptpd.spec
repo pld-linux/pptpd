@@ -13,6 +13,7 @@ Patch0:		%{name}-install.patch
 URL:		http://www.poptop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	sed >= 4.0
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -39,6 +40,8 @@ a klientem podobnie do innych protoko³ów klient-serwer.
 %prep
 %setup -q 
 %patch0 -p1
+
+sed -i -e "s#/lib#/%{_lib}#g#" plugins/Makefile
 
 %build
 %{__aclocal}
