@@ -1,12 +1,12 @@
 Summary:	Serves out PPTP connections
 Name:		pptpd
-Version:	0.9.2
+Version:	1.0.0
 Release:	1
 Copyright:	GPL
 Group:		Utilities/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
-Source:		http://www.moretonbay.com/vpn/pptpd-0.8.4.tgz
-BuildRoot:	/tmp/%{version}-%{name}-root
+Source:		http://www.moretonbay.com/vpn/%{name}-%{version}.tgz
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 PPTPd, Point-to-Point Tunnelling Protocol Daemon, offers out connections to
@@ -20,20 +20,27 @@ and passed between server and client similar to other C/S protocols.
 %setup -q
 
 %build
-./configure
+%configure
 make 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make install
-install samples/pptpd.conf /etc/pptpd.conf
+install -d $RPM_BUILD_ROOT%{_sysconfdir}
+
+make install DESTDIR=$RPM_BUILD_ROOT
+
+install samples/pptpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/pptpd.conf
+
+gzip -9nf AUTHORS COPYING INSTALL README TODO html/* samples/* \
+	$RPM_BUILD_ROOT%{_mandir}/*/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%doc AUTHORS COPYING INSTALL README TODO html samples
-/usr/bin/pptpd
-/usr/bin/pptpctrl
-/etc/pptpd.conf
+%defattr(644,root,root,755)
+%doc {AUTHORS,COPYING,INSTALL,README,TODO,html/*,samples/*}.gz
+%attr(755,root,root) %{_sbindir}/*
+%{_mandir}/*/*
+%{_sysconfdir}/pptpd.conf
