@@ -8,6 +8,7 @@ License:	GPL
 Group:		Applications/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
 Source0:	http://poptop.lineo.com/releases/%{name}-%{version}-%{bver}.tar.gz
+# Source0-md5:	3922fef6499b94d4e7f2752f38fe2247
 URL:		http://poptop.lineo.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
