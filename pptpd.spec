@@ -5,8 +5,11 @@ Release:	1
 Copyright:	GPL
 Group:		Utilities/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
-Source:		http://www.moretonbay.com/vpn/%{name}-%{version}.tgz
+Source:		http://www.moretonbay.com/vpn/releases/%{name}-%{version}.tgz
+URL:		http://www.moretonbay.com/vpn/pptp.html
 BuildRoot:	/tmp/%{name}-%{version}-root
+
+%define		_sysconfdir	/etc
 
 %description
 PPTPd, Point-to-Point Tunnelling Protocol Daemon, offers out connections to
@@ -20,6 +23,7 @@ and passed between server and client similar to other C/S protocols.
 %setup -q
 
 %build
+LDFLAGS="-s"; export LDFLAGS
 %configure
 make 
 
@@ -32,7 +36,7 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 install samples/pptpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/pptpd.conf
 
-gzip -9nf AUTHORS COPYING INSTALL README TODO html/* samples/* \
+gzip -9nf AUTHORS README TODO html/* samples/* \
 	$RPM_BUILD_ROOT%{_mandir}/*/*
 
 %clean
@@ -41,6 +45,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc {AUTHORS,COPYING,INSTALL,README,TODO,html/*,samples/*}.gz
+%config(noreplace) %{_sysconfdir}/pptpd.conf
 %attr(755,root,root) %{_sbindir}/*
-%{_mandir}/*/*
-%{_sysconfdir}/pptpd.conf
+%{_mandir}/man?/*
