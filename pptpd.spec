@@ -3,7 +3,7 @@ Summary(pl):	Serwer po³±czeñ PPTP
 Name:		pptpd
 Version:	1.1.4
 %define	bver	b4
-Release:	2.%{bver}.1
+Release:	2.%{bver}.2
 License:	GPL
 Group:		Applications/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
