@@ -1,0 +1,13 @@
+--- pptpd-1.2.1/plugins/Makefile~	2004-05-21 11:26:37.000000000 +0200
++++ pptpd-1.2.1/plugins/Makefile	2005-01-07 09:59:40.637889688 +0100
+@@ -2,8 +2,8 @@
+ COPTS	= -O2 -g
+ CFLAGS	= $(COPTS) -I.. -I../../include -fPIC
+ LDFLAGS	= -shared
+-INSTALL	= install -o root
+-prefix  = /usr/local
++INSTALL	= install -c
++prefix  = /usr
+ 
+ PLUGINS = pptpd-logwtmp.so
+ 
