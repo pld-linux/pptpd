@@ -2,17 +2,16 @@ Summary:	Serves out PPTP connections
 Summary(pl):	Serwer po³±czeñ PPTP
 Name:		pptpd
 Version:	1.1.4
-Release:	1
+%define	bver	b3
+Release:	1.%{bver}.1
 License:	GPL
 Group:		Applications/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
-Source0:	http://poptop.lineo.com/releases/%{name}-%{version}-b3.tar.gz
+Source0:	http://poptop.lineo.com/releases/%{name}-%{version}-%{bver}.tar.gz
 URL:		http://poptop.lineo.com/
-BuildRequires:	automake
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_sysconfdir	/etc
 
 %description
 PPTPd, Point-to-Point Tunnelling Protocol Daemon, offers out
@@ -30,7 +29,7 @@ klientom pptp, aby sta³y siê wirtualnymi cz³onkami puli IP
 obs³ugiwanej przez serwer pptp. W efekcie ci klienci staj± siê
 wirtualnymi cz³onkami podsieci lokalnej, niezale¿nie od ich
 prawdziwego adresu IP. Tunel jest tworzony miêdzy serwerem a klientem
-pptp, a pakiety z podsieci s± wy³apywane i puszczne pomiêdzy serwerem
+pptp, a pakiety z podsieci s± wy³apywane i puszczane pomiêdzy serwerem
 a klientem podobnie do innych protoko³ów klient-serwer.
 
 %prep
@@ -56,6 +55,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO COPYING INSTALL html/* samples/*
-%config(noreplace) %{_sysconfdir}/pptpd.conf
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/pptpd.conf
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
