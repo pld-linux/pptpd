@@ -2,7 +2,7 @@ Summary:	Serves out PPTP connections
 Summary(pl):	Serwer po³±czeñ PPTP
 Name:		pptpd
 Version:	1.2.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
@@ -17,6 +17,7 @@ BuildRequires:	automake
 BuildRequires:	sed >= 4.0
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
+Requires:	ppp >= 2.4.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
