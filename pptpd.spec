@@ -37,7 +37,7 @@ a klientem podobnie do innych protoko³ów klient-serwer.
 %setup -q
 
 %build
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure
 %{__make}
