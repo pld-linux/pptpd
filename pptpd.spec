@@ -1,13 +1,14 @@
 Summary:	Serves out PPTP connections
 Name:		pptpd
-Version:	1.1.1
+Version:	1.1.2
 Release:	1
 License:	GPL
-Group:		Utilities/System
-Group(pl):	Narzêdzia/System
+Group:		Applications/System
+Group(de):	Applikationen/System
+Group(pl):	Aplikacje/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
-Source0:	http://www.moretonbay.com/vpn/releases/%{name}-%{version}.tgz
-URL:		http://www.moretonbay.com/vpn/pptp.html
+Source0:	http://poptop.lineo.com/releases/%{name}-%{version}.tar.gz
+URL:		http://poptop.lineo.com/	
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc
@@ -36,7 +37,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
 install samples/pptpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/pptpd.conf
 
-gzip -9nf AUTHORS README TODO html/* samples/*
+gzip -9nf AUTHORS README TODO COPYING INSTALL html/* samples/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
