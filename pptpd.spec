@@ -2,7 +2,7 @@ Summary:	Serves out PPTP connections
 Summary(pl):	Serwer po³±czeñ PPTP
 Name:		pptpd
 Version:	1.1.2
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
@@ -50,14 +50,12 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
 install samples/pptpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/pptpd.conf
 
-gzip -9nf AUTHORS README TODO COPYING INSTALL html/* samples/*
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz html/*.gz samples/*.gz
+%doc AUTHORS README TODO COPYING INSTALL html/* samples/*
 %config(noreplace) %{_sysconfdir}/pptpd.conf
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
