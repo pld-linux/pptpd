@@ -1,4 +1,5 @@
 Summary:	Serves out PPTP connections
+Summary(pl):	Serwer po³±czeñ PPTP
 Name:		pptpd
 Version:	1.1.2
 Release:	1
