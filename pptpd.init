@@ -2,7 +2,7 @@
 #
 # pptp		pptp serves out PPTP connections
 #
-# chkconfig:	345 <startr_level> <stop_level>
+# chkconfig:	345 56 46
 #
 #
 # $Id$
