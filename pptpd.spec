@@ -5,8 +5,6 @@ Version:	1.1.2
 Release:	2
 License:	GPL
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
 Source0:	http://poptop.lineo.com/releases/%{name}-%{version}.tar.gz
 URL:		http://poptop.lineo.com/	
