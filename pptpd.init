@@ -1,0 +1,98 @@
+#!/bin/sh
+#
+# pptp		pptp serves out PPTP connections
+#
+# chkconfig:	345 <startr_level> <stop_level>
+#
+#
+# $Id$
+
+
+# Source function library
+. /etc/rc.d/init.d/functions
+
+# Get network config
+. /etc/sysconfig/network
+
+# Get service config - may override defaults
+[ -f /etc/sysconfig/pptpd ] && . /etc/sysconfig/pptpd
+
+# Check that networking is up.
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network ]; then
+		# nls "ERROR: Networking is down. %s can't be run." pptpd
+		msg_network_down pptpd
+		exit 1
+	fi
+else
+	exit 0
+fi
+
+
+# See how we were called.
+case "$1" in
+  start)
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/pptpd ]; then
+		# show "Starting %s service" pptpd
+		msg_starting pptpd
+		daemon pptpd -d
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/pptpd
+	else
+		# show "%s service is already running." pptpd
+		msg_already_running pptpd
+	fi
+	;;
+  stop)
+	if [ -f /var/lock/subsys/pptpd ]; then
+		# Stop daemons.
+		# show "Stopping %s service" pptpd
+		msg_stopping pptpd
+		killproc pptpd
+		rm -f /var/lock/subsys/pptpd
+	else
+		# show "%s service is not running." pptpd
+		msg_not_running pptpd
+	fi
+	;;
+  restart)
+	$0 stop
+	$0 start
+	exit $?
+	;;
+  reload)
+	if [ -f /var/lock/subsys/pptpd ]; then
+		# show "Reload %s service" pptpd
+		msg_reloading pptpd
+		killproc pptpd -HUP
+		RETVAL=$?
+	else
+		# show "%s service is not running." pptpd
+		msg_not_running pptpd >&2
+		RETVAL=7
+	fi
+	;;
+  force-reload)
+	# if program allows reloading without stopping
+	$0 reload
+
+	# or if it doesn't
+	$0 restart
+
+	exit $?
+	;;
+  status)
+	status pptpd
+	RETVAL=$?
+	;;
+  *)
+	# show "Usage: %s {start|stop|restart|reload|force-reload|status}"
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	exit 3
+esac
+
+exit $RETVAL
+
+# This must be last line !
+# vi:syntax=sh:tw=78:ts=8:sw=4
