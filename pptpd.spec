@@ -26,6 +26,9 @@ similar to other C/S protocols.
 %setup -q
 
 %build
+rm -f missing
+aclocal
+autoconf
 %configure
 %{__make}
 
