@@ -4,20 +4,22 @@ Version:	1.1.1
 Release:	1
 License:	GPL
 Group:		Utilities/System
+Group(pl):	Narzêdzia/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
-Source:		http://www.moretonbay.com/vpn/releases/%{name}-%{version}.tgz
+Source0:	http://www.moretonbay.com/vpn/releases/%{name}-%{version}.tgz
 URL:		http://www.moretonbay.com/vpn/pptp.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc
 
 %description
-PPTPd, Point-to-Point Tunnelling Protocol Daemon, offers out connections to
-pptp clients to become virtual members of the IP pool owned by the pptp
-server. In effect, these clients become virtual members of the local
-subnet, regardless of what their real IP address is. A tunnel is built
-between the pptp server and client, and packets from the subnet are wrapped
-and passed between server and client similar to other C/S protocols.
+PPTPd, Point-to-Point Tunnelling Protocol Daemon, offers out
+connections to pptp clients to become virtual members of the IP pool
+owned by the pptp server. In effect, these clients become virtual
+members of the local subnet, regardless of what their real IP address
+is. A tunnel is built between the pptp server and client, and packets
+from the subnet are wrapped and passed between server and client
+similar to other C/S protocols.
 
 %prep
 %setup -q
