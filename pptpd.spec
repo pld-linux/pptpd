@@ -3,11 +3,12 @@ Summary(pl):	Serwer po³±czeñ PPTP
 Name:		pptpd
 Version:	1.1.4
 %define	bver	b4
-Release:	1.%{bver}.1
+Release:	2.%{bver}.1
 License:	GPL
 Group:		Applications/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
 Source0:	http://dl.sourceforge.net/poptop/%{name}-%{version}-%{bver}.tar.gz
+Source1:	%{name}.init
 # Source0-md5:	58603224998f22542e8d7ecb357bc006
 URL:		http://www.poptop.org/
 BuildRequires:	autoconf
@@ -44,20 +45,40 @@ a klientem podobnie do innych protoko³ów klient-serwer.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/rc.d/init.d}
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	 DESTDIR=$RPM_BUILD_ROOT
 
 install samples/pptpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/pptpd.conf
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
 
 rm -rf html/CVS samples/CVS
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+/sbin/chkconfig --add pptpd
+if [ -f /var/lock/subsys/pptpd ]; then
+        /etc/rc.d/init.d/pptpd restart 1>&2
+else
+        echo "Type \"/etc/rc.d/init.d/pptpd start\" to start pptpd." 1>&2
+fi
+                                                                                
+%preun
+if [ "$1" = "0" ]; then
+        if [ -f /var/lock/subsys/pptpd ]; then
+                /etc/rc.d/init.d/pptpd stop 1>&2
+        fi
+        /sbin/chkconfig --del pptpd
+fi
+
+
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO html/* samples/*
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/pptpd.conf
+%attr(755,root,root) /etc/rc.d/init.d/%{name}
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
