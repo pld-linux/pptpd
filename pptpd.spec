@@ -49,12 +49,14 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
 install samples/pptpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/pptpd.conf
 
+rm -rf html/CVS samples/CVS
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS README TODO COPYING INSTALL html/* samples/*
+%doc AUTHORS README TODO html/* samples/*
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/pptpd.conf
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
