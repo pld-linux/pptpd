@@ -1,15 +1,15 @@
 Summary:	Serves out PPTP connections
 Summary(pl):	Serwer po³±czeñ PPTP
 Name:		pptpd
-Version:	1.1.4
-%define	bver	b4
-Release:	2.%{bver}.2
+Version:	1.2.1
+Release:	0.1
 License:	GPL
 Group:		Applications/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
-Source0:	http://dl.sourceforge.net/poptop/%{name}-%{version}-%{bver}.tar.gz
+Source0:	http://dl.sourceforge.net/poptop/%{name}-%{version}.tar.gz
+# Source0-md5:	067e9474998345485ba1e92cc5ff59c6
 Source1:	%{name}.init
-# Source0-md5:	58603224998f22542e8d7ecb357bc006
+Patch0:		%{name}-install.patch
 URL:		http://www.poptop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -37,7 +37,8 @@ pptp, a pakiety z podsieci s± wy³apywane i puszczane pomiêdzy serwerem
 a klientem podobnie do innych protoko³ów klient-serwer.
 
 %prep
-%setup -q -n poptop-%{version}
+%setup -q 
+%patch0 -p1
 
 %build
 %{__aclocal}
@@ -79,8 +80,10 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS README TODO html/* samples/*
+%doc AUTHORS README TODO samples/*
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/pptpd.conf
 %attr(755,root,root) /etc/rc.d/init.d/%{name}
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
+%{_libdir}/%{name}
+%{_libdir}/%{name}/*
