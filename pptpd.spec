@@ -90,7 +90,7 @@ fi
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO samples/*
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/pptpd.conf
-%attr(755,root,root) /etc/rc.d/init.d/%{name}
+%attr(754,root,root) /etc/rc.d/init.d/%{name}
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
 %{_libdir}/%{name}
