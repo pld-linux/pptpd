@@ -12,8 +12,6 @@ BuildRequires:	automake
 BuildRequires:	autoconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_sysconfdir	/etc
-
 %description
 PPTPd, Point-to-Point Tunnelling Protocol Daemon, offers out
 connections to pptp clients to become virtual members of the IP pool
@@ -37,7 +35,7 @@ a klientem podobnie do innych protoko³ów klient-serwer.
 %setup -q -n poptop-%{version}
 
 %build
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure
 %{__make}
