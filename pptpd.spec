@@ -7,7 +7,7 @@ Group:		Utilities/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
 Source:		http://www.moretonbay.com/vpn/releases/%{name}-%{version}.tgz
 URL:		http://www.moretonbay.com/vpn/pptp.html
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc
 
