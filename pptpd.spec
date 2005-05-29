@@ -1,13 +1,13 @@
 Summary:	Serves out PPTP connections
 Summary(pl):	Serwer po³±czeñ PPTP
 Name:		pptpd
-Version:	1.2.1
-Release:	2
+Version:	1.2.3
+Release:	1
 License:	GPL
 Group:		Applications/System
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
 Source0:	http://dl.sourceforge.net/poptop/%{name}-%{version}.tar.gz
-# Source0-md5:	067e9474998345485ba1e92cc5ff59c6
+# Source0-md5:	a521e40ca304b0c125cc25f9b9d03324
 Source1:	%{name}.init
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-lib64.patch
