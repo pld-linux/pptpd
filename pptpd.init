@@ -23,7 +23,6 @@
 # Check that networking is up.
 if is_yes "${NETWORKING}"; then
 	if [ ! -f /var/lock/subsys/network ]; then
-		# nls "ERROR: Networking is down. %s can't be run." pptpd
 		msg_network_down pptpd
 		exit 1
 	fi
@@ -37,25 +36,21 @@ case "$1" in
   start)
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/pptpd ]; then
-		# show "Starting %s service" pptpd
 		msg_starting pptpd
 		daemon pptpd -d
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/pptpd
 	else
-		# show "%s service is already running." pptpd
 		msg_already_running pptpd
 	fi
 	;;
   stop)
 	if [ -f /var/lock/subsys/pptpd ]; then
 		# Stop daemons.
-		# show "Stopping %s service" pptpd
 		msg_stopping pptpd
 		killproc pptpd
 		rm -f /var/lock/subsys/pptpd
 	else
-		# show "%s service is not running." pptpd
 		msg_not_running pptpd
 	fi
 	;;
@@ -66,12 +61,10 @@ case "$1" in
 	;;
   reload)
 	if [ -f /var/lock/subsys/pptpd ]; then
-		# show "Reload %s service" pptpd
 		msg_reloading pptpd
 		killproc pptpd -HUP
 		RETVAL=$?
 	else
-		# show "%s service is not running." pptpd
 		msg_not_running pptpd >&2
 		RETVAL=7
 	fi
@@ -90,7 +83,6 @@ case "$1" in
 	RETVAL=$?
 	;;
   *)
-	# show "Usage: %s {start|stop|restart|reload|force-reload|status}"
 	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
 	exit 3
 esac
