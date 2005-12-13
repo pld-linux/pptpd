@@ -15,9 +15,9 @@ URL:		http://www.poptop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	sed >= 4.0
-PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 Requires:	ppp >= 2.4.3
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -40,7 +40,7 @@ pptp, a pakiety z podsieci s± wy³apywane i puszczane pomiêdzy serwerem
 a klientem podobnie do innych protoko³ów klient-serwer.
 
 %prep
-%setup -q 
+%setup -q
 %patch0 -p1
 %if "%{_lib}" == "lib64"
 %patch1 -p1
@@ -89,7 +89,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO samples/*
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/pptpd.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pptpd.conf
 %attr(754,root,root) /etc/rc.d/init.d/%{name}
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
