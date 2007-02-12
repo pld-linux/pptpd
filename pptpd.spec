@@ -1,5 +1,5 @@
 Summary:	Serves out PPTP connections
-Summary(pl):	Serwer po³±czeñ PPTP
+Summary(pl.UTF-8):   Serwer poÅ‚Ä…czeÅ„ PPTP
 Name:		pptpd
 Version:	1.2.3
 Release:	1
@@ -29,15 +29,15 @@ is. A tunnel is built between the pptp server and client, and packets
 from the subnet are wrapped and passed between server and client
 similar to other C/S protocols.
 
-%description -l pl
+%description -l pl.UTF-8
 PPTPd (Point-to-Point Tunnelling Protocol Daemon, czyli demon
-obs³uguj±cy protokó³ tunelowania Point-to-Point) udostêpnia po³±czenia
-klientom pptp, aby sta³y siê wirtualnymi cz³onkami puli IP
-obs³ugiwanej przez serwer pptp. W efekcie ci klienci staj± siê
-wirtualnymi cz³onkami podsieci lokalnej, niezale¿nie od ich
-prawdziwego adresu IP. Tunel jest tworzony miêdzy serwerem a klientem
-pptp, a pakiety z podsieci s± wy³apywane i puszczane pomiêdzy serwerem
-a klientem podobnie do innych protoko³ów klient-serwer.
+obsÅ‚ugujÄ…cy protokÃ³Å‚ tunelowania Point-to-Point) udostÄ™pnia poÅ‚Ä…czenia
+klientom pptp, aby staÅ‚y siÄ™ wirtualnymi czÅ‚onkami puli IP
+obsÅ‚ugiwanej przez serwer pptp. W efekcie ci klienci stajÄ… siÄ™
+wirtualnymi czÅ‚onkami podsieci lokalnej, niezaleÅ¼nie od ich
+prawdziwego adresu IP. Tunel jest tworzony miÄ™dzy serwerem a klientem
+pptp, a pakiety z podsieci sÄ… wyÅ‚apywane i puszczane pomiÄ™dzy serwerem
+a klientem podobnie do innych protokoÅ‚Ã³w klient-serwer.
 
 %prep
 %setup -q
