@@ -1,0 +1,4 @@
+- updated Source url and added URL,
+- added passing LDFLAGS="-s" to ./configure environment (now binaries are
+  stripped),
+- removed COPYING and INSTALL from %doc.
