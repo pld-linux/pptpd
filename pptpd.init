@@ -36,8 +36,9 @@ case "$1" in
   start)
 	# Check if the service is already running?
 	if [ ! -f /var/lock/subsys/pptpd ]; then
+		is_no "$RC_LOGGING" && closefds=--closefds
 		msg_starting pptpd
-		daemon pptpd -d
+		daemon $closefds /usr/sbin/pptpd -d
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/pptpd
 	else
