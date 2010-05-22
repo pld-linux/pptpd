@@ -4,7 +4,7 @@ Name:		pptpd
 Version:	1.3.4
 Release:	1
 License:	GPL
-Group:		Applications/System
+Group:		Networking/Daemons
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
 Source0:	http://dl.sourceforge.net/poptop/%{name}-%{version}.tar.gz
 # Source0-md5:	b38df9c431041922c997c1148bedf591
