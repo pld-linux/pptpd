@@ -2,7 +2,7 @@ Summary:	Serves out PPTP connections
 Summary(pl.UTF-8):	Serwer połączeń PPTP
 Name:		pptpd
 Version:	1.3.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
@@ -11,6 +11,7 @@ Source0:	http://dl.sourceforge.net/poptop/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-lib64.patch
+Patch2:		%{name}-1.3.4-more-reodering-fixes.patch
 URL:		http://www.poptop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -45,6 +46,7 @@ a klientem podobnie do innych protokołów klient-serwer.
 %if "%{_lib}" == "lib64"
 %patch1 -p1
 %endif
+%patch2 -p1
 
 sed -i -e "s#/lib#/%{_lib}#g#" plugins/Makefile
 
