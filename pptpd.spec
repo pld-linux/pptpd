@@ -52,6 +52,7 @@ sed -i -e "s#/lib#/%{_lib}#g#" plugins/Makefile
 
 %build
 %{__aclocal}
+%{__automake}
 %{__autoconf}
 %configure
 %{__make}
