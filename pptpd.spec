@@ -10,7 +10,8 @@ Source0:	http://downloads.sourceforge.net/poptop/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-lib64.patch
-URL:		http://www.poptop.org/
+#URL:		http://www.poptop.org/
+URL:		http://poptop.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	ppp-plugin-devel
