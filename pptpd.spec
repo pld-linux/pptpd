@@ -5,8 +5,7 @@ Version:	1.4.0
 Release:	1
 License:	GPL
 Group:		Networking/Daemons
-Vendor:		Matthew Ramsay http://www.moretonbay.com/vpn/pptp.html
-Source0:	http://dl.sourceforge.net/poptop/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/poptop/%{name}-%{version}.tar.gz
 # Source0-md5:	36f9f45c6ffa92bc3b6e24ae2d053505
 Source1:	%{name}.init
 Patch0:		%{name}-install.patch
@@ -63,8 +62,8 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/rc.d/init.d}
 %{__make} install \
 	 DESTDIR=$RPM_BUILD_ROOT
 
-install samples/pptpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/pptpd.conf
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
+cp -p samples/pptpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/pptpd.conf
+cp -p %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
 
 rm -rf html/CVS samples/CVS
 
