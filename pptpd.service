@@ -1,0 +1,11 @@
+[Unit]
+Description=PoPToP Point to Point Tunneling Server
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/sysconfig/pptpd
+ExecStart=/usr/sbin/pptpd -f $OPTIONS
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

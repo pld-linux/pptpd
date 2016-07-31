@@ -39,6 +39,7 @@ case "$1" in
 		is_no "$RC_LOGGING" && closefds=--closefds
 		msg_starting pptpd
 		daemon $closefds /usr/sbin/pptpd -d
+		daemon $closefds /usr/sbin/pptpd $OPTIONS
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/pptpd
 	else

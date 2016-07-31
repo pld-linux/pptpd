@@ -2,12 +2,14 @@ Summary:	Serves out PPTP connections
 Summary(pl.UTF-8):	Serwer połączeń PPTP
 Name:		pptpd
 Version:	1.4.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://downloads.sourceforge.net/poptop/%{name}-%{version}.tar.gz
 # Source0-md5:	36f9f45c6ffa92bc3b6e24ae2d053505
 Source1:	%{name}.init
+Source2:	%{name}.service
+Source3:	%{name}.sysconfig
 Patch0:		%{name}-install.patch
 Patch1:		%{name}-lib64.patch
 #URL:		http://www.poptop.org/
@@ -16,9 +18,12 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	ppp-plugin-devel
 BuildRequires:	sed >= 4.0
+BuildRequires:	rpmbuild(macros) >= 1.647
 Requires(post,preun):	/sbin/chkconfig
+Requires(post,preun,postun):	systemd-units >= 38
 Requires:	ppp >= 2.4.3
 Requires:	rc-scripts
+Requires:	systemd-units >= 0.38
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -58,13 +63,15 @@ sed -i -e "s#/lib#/%{_lib}#g#" plugins/Makefile
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},/etc/rc.d/init.d}
+install -d $RPM_BUILD_ROOT{%{systemdunitdir},/etc/{rc.d/init.d,sysconfig}}
 
 %{__make} install \
 	 DESTDIR=$RPM_BUILD_ROOT
 
 cp -p samples/pptpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/pptpd.conf
 cp -p %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/%{name}
+cp -p %{SOURCE2} $RPM_BUILD_ROOT%{systemdunitdir}/pptpd.service
+cp -a %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/%{name}
 
 rm -rf html/CVS samples/CVS
 
@@ -73,26 +80,26 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add pptpd
-if [ -f /var/lock/subsys/pptpd ]; then
-	/etc/rc.d/init.d/pptpd restart 1>&2
-else
-	echo "Type \"/etc/rc.d/init.d/pptpd start\" to start pptpd." 1>&2
-fi
+%service %{name} restart
+%systemd_post %{name}.service
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/pptpd ]; then
-		/etc/rc.d/init.d/pptpd stop 1>&2
-	fi
+	%service -q %{name} stop
 	/sbin/chkconfig --del pptpd
 fi
+%systemd_preun %{name}.service
 
+%postun
+%systemd_reload
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README TODO samples/*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/pptpd.conf
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/%{name}
 %attr(754,root,root) /etc/rc.d/init.d/%{name}
+%{systemdunitdir}/%{name}.service
 %attr(755,root,root) %{_sbindir}/*
 %{_mandir}/man?/*
 %{_libdir}/%{name}
