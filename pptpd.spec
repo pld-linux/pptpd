@@ -47,9 +47,9 @@ a klientem podobnie do innych protokołów klient-serwer.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 %if "%{_lib}" == "lib64"
-%patch1 -p1
+%patch -P1 -p1
 %endif
 
 sed -i -e "s#/lib#/%{_lib}#g#" plugins/Makefile
